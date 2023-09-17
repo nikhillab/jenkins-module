@@ -1,0 +1,37 @@
+{"properties": [
+  {
+    "name": "entity.packages",
+    "type": "java.lang.String",
+    "description": "A description for 'entity.packages'"
+  },
+  {
+    "name": "jenkins.url",
+    "type": "java.lang.String",
+    "description": "A description for 'jenkins.url'"
+  },
+  {
+    "name": "jenkins.user.name",
+    "type": "java.lang.String",
+    "description": "A description for 'jenkins.user.name'"
+  },
+  {
+    "name": "jenkins.user.password",
+    "type": "java.lang.String",
+    "description": "A description for 'jenkins.user.password'"
+  },
+  {
+    "name": "jenkins.user.token",
+    "type": "java.lang.String",
+    "description": "A description for 'jenkins.user.token'"
+  },
+  {
+    "name": "repository.packages",
+    "type": "java.lang.String",
+    "description": "A description for 'repository.packages'"
+  },
+  {
+    "name": "env.type",
+    "type": "java.lang.String",
+    "description": "A description for 'env.type'"
+  }
+]}
