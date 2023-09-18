@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 @Table(name = "jenkins_audit_history")
 public class JenkinsAuditHistory {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long auditId;
 	private LocalDateTime eventTime;
 	private String type;

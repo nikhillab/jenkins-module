@@ -9,14 +9,12 @@ import static org.relmng.jenkins.constants.Constants.JOBS;
 import static org.relmng.jenkins.constants.Constants.WORKFLOW_MULTI_BRANCH_PROJECT;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
-import org.springframework.util.ReflectionUtils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.relmng.core.mapper.EnvironmentDetailsMapper;
+import org.relmng.core.mapper.EnvironmentDetailMapper;
 import org.relmng.jenkins.mapper.JenkinsServerDetailsMapper;
 import org.relmng.jenkins.model.JenkinsServerDetails;
 import org.relmng.jenkins.record.JenkinsServerDetailsRecord;
@@ -91,8 +91,7 @@ public class JenkinsServerDetailsService {
 			jenkinsServerDetails.setActive(jenkinsServerDetailsRecord.isActive());
 			jenkinsServerDetails.setToken(jenkinsServerDetailsRecord.token());
 			jenkinsServerDetails.setUserName(jenkinsServerDetailsRecord.userName());
-			jenkinsServerDetails.setEnvironment(
-					EnvironmentDetailsMapper.mapRecordToEnvironmentDetails(jenkinsServerDetailsRecord.environment()));
+			jenkinsServerDetails.setEnvironment(jenkinsServerDetailsRecord.environment());
 			jenkinsServerDetails.setBassUrl(jenkinsServerDetailsRecord.bassUrl());
 
 			jenkinsServerDetails = jenkinsServerDetailsRepository.save(jenkinsServerDetails);

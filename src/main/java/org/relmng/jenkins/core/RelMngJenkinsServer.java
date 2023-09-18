@@ -11,7 +11,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.client.JenkinsHttpConnection;
-import com.offbytwo.jenkins.helper.Range;
 import com.offbytwo.jenkins.model.BaseModel;
 
 /**

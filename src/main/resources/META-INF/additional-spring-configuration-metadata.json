@@ -1,37 +1,54 @@
-{"properties": [
-  {
-    "name": "entity.packages",
-    "type": "java.lang.String",
-    "description": "A description for 'entity.packages'"
-  },
-  {
-    "name": "jenkins.url",
-    "type": "java.lang.String",
-    "description": "A description for 'jenkins.url'"
-  },
-  {
-    "name": "jenkins.user.name",
-    "type": "java.lang.String",
-    "description": "A description for 'jenkins.user.name'"
-  },
-  {
-    "name": "jenkins.user.password",
-    "type": "java.lang.String",
-    "description": "A description for 'jenkins.user.password'"
-  },
-  {
-    "name": "jenkins.user.token",
-    "type": "java.lang.String",
-    "description": "A description for 'jenkins.user.token'"
-  },
-  {
-    "name": "repository.packages",
-    "type": "java.lang.String",
-    "description": "A description for 'repository.packages'"
-  },
-  {
-    "name": "env.type",
-    "type": "java.lang.String",
-    "description": "A description for 'env.type'"
-  }
-]}
+{
+	"properties": [
+		{
+			"name": "jenkins.user.token",
+			"type": "java.lang.String",
+			"description": "A description for 'jenkins.user.token'"
+		},
+		{
+			"name": "env.type",
+			"type": "java.lang.String",
+			"description": "A description for 'env.type'"
+		},
+		{
+			"name": "jenkins.url",
+			"type": "java.lang.String",
+			"description": "A description for 'jenkins.url'"
+		},
+		{
+			"name": "jenkins.user.name",
+			"type": "java.lang.String",
+			"description": "A description for 'jenkins.user.name'"
+		},
+		{
+			"name": "packages.entity",
+			"type": "java.lang.String",
+			"description": "A description for 'packages.entity'"
+		},
+		{
+			"name": "packages.repository",
+			"type": "java.lang.String",
+			"description": "A description for 'packages.repository'"
+		},
+		{
+			"name": "packages.component",
+			"type": "java.lang.String",
+			"description": "A description for 'packages.component'"
+		},
+		{
+			"name": "crypto.key.location",
+			"type": "java.lang.String",
+			"description": "A description for 'crypto.key.location'"
+		},
+		{
+			"name": "crypto.key.bits",
+			"type": "java.lang.Integer",
+			"description": "A description for 'crypto.key.bits'"
+		},
+		{
+			"name": "crypto.key.type",
+			"type": "java.lang.String",
+			"description": "A description for 'crypto.key.type'"
+		}
+	]
+}

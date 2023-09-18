@@ -10,6 +10,6 @@ import jakarta.persistence.Table;
 @Table(name = "jenkins_job_user_filters")
 public class JenkinsJobUserFilters {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long filterId;
 }

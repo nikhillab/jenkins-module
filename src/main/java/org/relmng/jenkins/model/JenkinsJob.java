@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 public class JenkinsJob {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long pkJobId;
 	private String name;
 	private String url;

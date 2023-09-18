@@ -1,19 +1,18 @@
 package org.relmng.jenkins;
 
+import org.relmng.core.crypto.RelMngSecretKeyGenerator;
 import org.relmng.core.model.EnvironmentDetails;
-import org.relmng.core.repository.EnvironmentDetailsRepository;
-import org.relmng.jenkins.core.RelMngJenkinsServer;
-import org.relmng.jenkins.core.RelMngJenkinsService;
-import org.relmng.jenkins.ingestser.RelMngJenkinsJobIngester;
-import org.relmng.jenkins.model.JenkinsServerDetails;
-import org.relmng.jenkins.repository.JenkinsServerDetailsRepository;
+import org.relmng.core.record.EnvironmentDetailRecord;
+import org.relmng.core.record.RelMngAESConfigRecord;
+import org.relmng.core.service.EnvironmentDetailService;
+import org.relmng.jenkins.record.JenkinsServerDetailsRecord;
+import org.relmng.jenkins.service.JenkinsServerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import com.offbytwo.jenkins.helper.JenkinsVersion;
+import org.springframework.core.env.Environment;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author nikhil
@@ -21,37 +20,40 @@ import com.offbytwo.jenkins.helper.JenkinsVersion;
  */
 @SpringBootApplication
 public class JenkinsModuleApplication implements CommandLineRunner {
+
 	@Autowired
-	EnvironmentDetailsRepository environmentDetailsRepository;
+	RelMngSecretKeyGenerator generator;
 	@Autowired
-	JenkinsServerDetailsRepository serverDetailsRepository;
+	Environment environment;
 	@Autowired
-	RelMngJenkinsJobIngester jenkinsJobIngester;
+	EnvironmentDetailService environmentDetailService;
 	@Autowired
-	RelMngJenkinsServer jenkinsServer;
-	@Autowired
-	RelMngJenkinsService mngJenkinsService;
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+	JenkinsServerDetailsService detailsService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JenkinsModuleApplication.class, args);
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
+
+		RelMngAESConfigRecord generateMasterKey = generator.generateMasterKey(
+				environment.getRequiredProperty("crypto.key.bits", Integer.class),
+				environment.getRequiredProperty("crypto.key.type"), "RELMNG_MASTER.txt");
 
 		EnvironmentDetails environmentDetails = new EnvironmentDetails();
 		environmentDetails.setName("UAT_1");
 		environmentDetails.setActive(true);
-		environmentDetailsRepository.saveAndFlush(environmentDetails);
 
+		EnvironmentDetailRecord environmentDetailRecord = environmentDetailService
+				.save(new EnvironmentDetailRecord(0l, "UAT_3", generateMasterKey.pkId(), true));
 
 
 //		JenkinsVersion version = jenkinsServer.getVersion();
 //		System.out.println(version);
 
-		jenkinsJobIngester.init();
+//		jenkinsJobIngester.init();
 
 	}
 

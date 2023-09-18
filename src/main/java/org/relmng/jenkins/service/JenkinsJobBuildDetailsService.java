@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.relmng.jenkins.mapper.JobBuildDetailsMapper;
 import org.relmng.jenkins.model.JenkinsJobBuildDetails;
 import org.relmng.jenkins.record.BuildRecord;
+import org.relmng.jenkins.record.JobBuildDetailsRecord;
 import org.relmng.jenkins.repository.JenkinsJobBuildDetailsRepository;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,8 @@ public class JenkinsJobBuildDetailsService {
 	public Optional<BuildRecord> getLastBuildDetails(long pkJobId) {
 		var jenkinsJobBuildDetails = jenkinsJobBuildDetailsRepository.findByJenkinsJobId(pkJobId);
 		if (!jenkinsJobBuildDetails.isEmpty()) {
-			Collections.sort(jenkinsJobBuildDetails, Comparator.comparingLong(JenkinsJobBuildDetails::getId).reversed());
+			Collections.sort(jenkinsJobBuildDetails,
+					Comparator.comparingLong(JenkinsJobBuildDetails::getId).reversed());
 			return Optional.of(JobBuildDetailsMapper.mapJobBuildDetailsToRecord(jenkinsJobBuildDetails.get(0)));
 		}
 		return Optional.empty();
@@ -80,14 +82,12 @@ public class JenkinsJobBuildDetailsService {
 			jenkinsJobBuildDetails.setDuration(details.getDuration());
 			jenkinsJobBuildDetails.setEstimatedDuration(details.getEstimatedDuration());
 			jenkinsJobBuildDetails.setFullDisplayName(details.getFullDisplayName());
-			jenkinsJobBuildDetails.setBuiltOn(details.getBuiltOn());
-			
+
 			if (details.isBuilding()) {
 				jenkinsJobBuildDetails.setResult(BuildResult.BUILDING.toString());
 			} else {
 				jenkinsJobBuildDetails.setResult(details.getResult().toString());
 			}
-			jenkinsJobBuildDetails.setDescription(details.getDescription());
 
 			// for now save json data
 			jenkinsJobBuildDetails.setParameters(convertToJson(details.getParameters()));
@@ -109,12 +109,20 @@ public class JenkinsJobBuildDetailsService {
 		return buildRecords;
 	}
 
+	/**
+	 * @param jobId
+	 * @return 
+	 */
+	public List<JobBuildDetailsRecord> getBuildDetails(long jobId) {
+		return jenkinsJobBuildDetailsRepository.findByJenkinsJobId(jobId).stream().map(JobBuildDetailsMapper::mapJobBuildDetailsToBuildDetailsRecord).toList();
+
+	}
+
 	private <T> String convertToJson(T value) {
 		try {
 			return objectMapper.writeValueAsString(value);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-			return "";
+		} catch (JsonProcessingException jsonProcessingException) {
+			return jsonProcessingException.getMessage();
 		}
 	}
 

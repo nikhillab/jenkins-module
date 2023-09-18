@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Table(name = "jenkins_job_build_details")
 public class JenkinsJobBuildDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long jobBuildId;
 	private int number;
 	private int queueId;
@@ -18,14 +18,11 @@ public class JenkinsJobBuildDetails {
 
 	private long jenkinsJobId;
 
-	private String consoleOutput; // text file path
 	private String parameters; // json
 	private String results;
 	private String displayName;
 	private long timeStamp;
 	private String artifacts; // files paths
-	private boolean building;
-	private String description;
 	private long duration;
 	private long estimatedDuration;
 	private String fullDisplayName;
@@ -33,9 +30,7 @@ public class JenkinsJobBuildDetails {
 	private String result;
 	private String consoleOutputText; // text file path
 	private String consoleOutputHtml; // text file path
-	private String changeSet; // json
 	private String changeSets; // json
-	private String builtOn;
 	private String culprits;
 	private String causes;
 
@@ -93,20 +88,6 @@ public class JenkinsJobBuildDetails {
 	 */
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	/**
-	 * @return the consoleOutput
-	 */
-	public String getConsoleOutput() {
-		return consoleOutput;
-	}
-
-	/**
-	 * @param consoleOutput the consoleOutput to set
-	 */
-	public void setConsoleOutput(String consoleOutput) {
-		this.consoleOutput = consoleOutput;
 	}
 
 	/**
@@ -177,34 +158,6 @@ public class JenkinsJobBuildDetails {
 	 */
 	public void setArtifacts(String artifacts) {
 		this.artifacts = artifacts;
-	}
-
-	/**
-	 * @return the building
-	 */
-	public boolean isBuilding() {
-		return building;
-	}
-
-	/**
-	 * @param building the building to set
-	 */
-	public void setBuilding(boolean building) {
-		this.building = building;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	/**
@@ -306,20 +259,6 @@ public class JenkinsJobBuildDetails {
 	}
 
 	/**
-	 * @return the changeSet
-	 */
-	public String getChangeSet() {
-		return changeSet;
-	}
-
-	/**
-	 * @param changeSet the changeSet to set
-	 */
-	public void setChangeSet(String changeSet) {
-		this.changeSet = changeSet;
-	}
-
-	/**
 	 * @return the changeSets
 	 */
 	public String getChangeSets() {
@@ -331,20 +270,6 @@ public class JenkinsJobBuildDetails {
 	 */
 	public void setChangeSets(String changeSets) {
 		this.changeSets = changeSets;
-	}
-
-	/**
-	 * @return the builtOn
-	 */
-	public String getBuiltOn() {
-		return builtOn;
-	}
-
-	/**
-	 * @param builtOn the builtOn to set
-	 */
-	public void setBuiltOn(String builtOn) {
-		this.builtOn = builtOn;
 	}
 
 	/**

@@ -1,18 +1,10 @@
 package org.relmng.jenkins.model;
 
-import java.util.Set;
-
-import org.relmng.core.model.EnvironmentDetails;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -24,7 +16,7 @@ import jakarta.persistence.Table;
 public class JenkinsServerDetails {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long pkId;
 
 	@Column(name = "name", unique = true, nullable = false)
@@ -37,9 +29,8 @@ public class JenkinsServerDetails {
 	private String token;
 	private boolean isActive;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "ENVIRONMENT_ID", nullable = false, updatable = false)
-	private EnvironmentDetails environment;
+	@Column(name = "ENVIRONMENT_ID", nullable = false)
+	private Long environment;
 
 	/**
 	 * @return the name
@@ -128,14 +119,14 @@ public class JenkinsServerDetails {
 	/**
 	 * @return the environment
 	 */
-	public EnvironmentDetails getEnvironment() {
+	public Long getEnvironment() {
 		return environment;
 	}
 
 	/**
 	 * @param environment the environment to set
 	 */
-	public void setEnvironment(EnvironmentDetails environment) {
+	public void setEnvironment(Long environment) {
 		this.environment = environment;
 	}
 

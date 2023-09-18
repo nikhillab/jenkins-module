@@ -3,7 +3,6 @@
  */
 package org.relmng.jenkins.mapper;
 
-import org.relmng.core.mapper.EnvironmentDetailsMapper;
 import org.relmng.jenkins.model.JenkinsServerDetails;
 import org.relmng.jenkins.record.JenkinsServerDetailsRecord;
 
@@ -16,8 +15,7 @@ public class JenkinsServerDetailsMapper {
 			JenkinsServerDetails jenkinsServerDetails) {
 		return new JenkinsServerDetailsRecord(jenkinsServerDetails.getPkId(), jenkinsServerDetails.getName(),
 				jenkinsServerDetails.getBassUrl(), jenkinsServerDetails.getUserName(), jenkinsServerDetails.getToken(),
-				EnvironmentDetailsMapper.mapToEnvironmentDetailsRecord(jenkinsServerDetails.getEnvironment()),
-				jenkinsServerDetails.isActive());
+				jenkinsServerDetails.getEnvironment(), jenkinsServerDetails.isActive());
 	}
 
 	public static JenkinsServerDetails mapRecordToJenkinsServerDetails(
@@ -28,8 +26,7 @@ public class JenkinsServerDetailsMapper {
 		jenkinsServerDetails.setActive(jenkinsServerDetailsRecord.isActive());
 		jenkinsServerDetails.setToken(jenkinsServerDetailsRecord.token());
 		jenkinsServerDetails.setUserName(jenkinsServerDetailsRecord.userName());
-		jenkinsServerDetails.setEnvironment(
-				EnvironmentDetailsMapper.mapRecordToEnvironmentDetails(jenkinsServerDetailsRecord.environment()));
+		jenkinsServerDetails.setEnvironment(jenkinsServerDetailsRecord.environment());
 		jenkinsServerDetails.setBassUrl(jenkinsServerDetailsRecord.bassUrl());
 		return jenkinsServerDetails;
 	}
