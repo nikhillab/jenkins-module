@@ -3,7 +3,7 @@ package org.relmng.jenkins.core;
 import java.io.IOException;
 import java.net.URI;
 
-import org.relmng.jenkins.config.JenkinsApplicationContext;
+import org.relmng.core.config.RelMngApplicationContext;
 import org.relmng.jenkins.constants.Constants;
 import org.relmng.jenkins.record.JobRecord;
 
@@ -91,7 +91,7 @@ public final class RelMngJenkinsServer extends JenkinsServer {
 	 * @throws IOException
 	 */
 	public <T> T getAllBuilds(JobRecord job, TypeReference<T> valueTypeRef) throws IOException {
-		var objectMapper = JenkinsApplicationContext.getBean(ObjectMapper.class);
+		var objectMapper = RelMngApplicationContext.getBean(ObjectMapper.class);
 		var resultJson = client.get(job.url().substring(job.url().indexOf("/job")) + Constants.GET_BUILD_PARAMS);
 		return objectMapper.readValue(resultJson, valueTypeRef);
 	}

@@ -1,6 +1,9 @@
 package org.relmng.jenkins.model;
 
+import org.relmng.core.converters.StringFieldConverter;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,10 +26,15 @@ public class JenkinsServerDetails {
 	private String name;
 
 	@Column(name = "bassUrl", unique = true, nullable = false)
+	@Convert(converter = StringFieldConverter.class)
 	private String bassUrl;
-
+	
+	@Convert(converter = StringFieldConverter.class)
 	private String userName;
+	
+	@Convert(converter = StringFieldConverter.class)
 	private String token;
+	
 	private boolean isActive;
 
 	@Column(name = "ENVIRONMENT_ID", nullable = false)

@@ -53,7 +53,7 @@ public class RelMngJenkinsJobIngester {
 	 * set while doing the setup in properties file or DB
 	 * 
 	 */
-	@Scheduled(cron = "0 0/8 * * * *")
+	@Scheduled(cron = "0 0/3 * * * *")
 	public void init() {
 		jenkinsServerDetailsService.getAllServer().forEach(this::check);
 	}
