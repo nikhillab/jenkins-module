@@ -26,7 +26,7 @@ import com.offbytwo.jenkins.model.JobWithDetails;
  *
  */
 @Component
-public class RelMngJenkinsJobBuildDetailsIngester {
+public class RelMngJenkinsJobBuildDetailsIngester implements RelMngJenkinsIngester {
 	Logger logger = LoggerFactory.getLogger(RelMngJenkinsJobBuildDetailsIngester.class);
 
 	private final JenkinsJobBuildDetailsService jobBuildDetailsService;
@@ -105,6 +105,12 @@ public class RelMngJenkinsJobBuildDetailsIngester {
 			return buildRecords;
 		}
 
+	}
+
+	@Override
+	public void ingester() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

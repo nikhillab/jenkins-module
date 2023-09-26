@@ -25,7 +25,7 @@ import com.offbytwo.jenkins.model.JobWithDetails;
  *
  */
 @Component
-public class RelMngJenkinsJobIngester {
+public class RelMngJenkinsJobIngester implements RelMngJenkinsIngester {
 	private Logger logger = LoggerFactory.getLogger(RelMngJenkinsJobIngester.class);
 	private final JenkinsJobService jenkinsJobService;
 	private final JenkinsServerDetailsService jenkinsServerDetailsService;
@@ -54,7 +54,8 @@ public class RelMngJenkinsJobIngester {
 	 * 
 	 */
 	@Scheduled(cron = "0 0/3 * * * *")
-	public void init() {
+	@Override
+	public void ingester() {
 		jenkinsServerDetailsService.getAllServer().forEach(this::check);
 	}
 

@@ -76,7 +76,7 @@ public final class RelMngJenkinsServer extends JenkinsServer {
 	 * @param <T>
 	 * @param path
 	 * @param cls
-	 * @return
+	 * @return <T>
 	 * @throws IOException
 	 */
 	public <T extends BaseModel> T getJobByUrl(String path, Class<T> cls) throws IOException {
@@ -87,12 +87,16 @@ public final class RelMngJenkinsServer extends JenkinsServer {
 	 * @param <T>
 	 * @param job
 	 * @param valueTypeRef
-	 * @return
+	 * @return <T>
 	 * @throws IOException
 	 */
 	public <T> T getAllBuilds(JobRecord job, TypeReference<T> valueTypeRef) throws IOException {
 		var objectMapper = RelMngApplicationContext.getBean(ObjectMapper.class);
 		var resultJson = client.get(job.url().substring(job.url().indexOf("/job")) + Constants.GET_BUILD_PARAMS);
 		return objectMapper.readValue(resultJson, valueTypeRef);
+	}
+	
+	public void getJobConfigXML(JobRecord job) {
+		
 	}
 }

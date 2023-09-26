@@ -2,7 +2,7 @@ package org.relmng.jenkins.config;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 
-import org.relmng.core.config.CoreConfigs;
+import org.relmng.core.config.CoreConfiguration;
 import org.relmng.jenkins.core.RelMngJenkinsServer;
 import org.relmng.jenkins.core.RelMngJenkinsServerFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,9 +21,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EntityScan(basePackages = { "${packages.entity}" })
 @EnableJpaRepositories(basePackages = { "${packages.repository}" })
-@Import(value = { CoreConfigs.class })
+@Import(value = { CoreConfiguration.class })
 //@EnableScheduling
-public class JenkinsConfigs {
+public class JenkinsConfiguration {
 
 	@Bean
 	public ObjectMapper objectMapper() {
